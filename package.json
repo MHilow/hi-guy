@@ -1,0 +1,16 @@
+{
+  "name": "hi-guy",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "peerjs": "^1.5.5"
+  }
+}
