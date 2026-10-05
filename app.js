@@ -19,6 +19,7 @@ class HiGuyApp {
     this.dataChannel = null;
     this.broadcastChannel = null;
     this.friendIdFromUrl = new URLSearchParams(window.location.search).get('friend');
+    this.currentFacingMode = 'user';
 
     this.state = 'idle'; // 'idle', 'searching', 'connected'
     this.currentBuddy = null;
@@ -143,6 +144,12 @@ class HiGuyApp {
     this.ageGateModal = document.getElementById('ageGateModal');
     this.acceptAgeBtn = document.getElementById('acceptAgeBtn');
     this.declineAgeBtn = document.getElementById('declineAgeBtn');
+
+    // Mobile Elements
+    this.mobileViewNav = document.getElementById('mobileViewNav');
+    this.mainGrid = document.getElementById('mainGrid');
+    this.flipCamBtn = document.getElementById('flipCamBtn');
+    this.mobileUnreadDot = document.getElementById('mobileUnreadDot');
   }
 
   // ===================================================================
@@ -534,6 +541,33 @@ class HiGuyApp {
     drawFallback();
   }
 
+  async flipCamera() {
+    this.currentFacingMode = this.currentFacingMode === 'user' ? 'environment' : 'user';
+    soundEngine.playPop(520);
+    try {
+      if (this.localStream) {
+        this.localStream.getTracks().forEach(t => t.stop());
+      }
+      this.localStream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: this.currentFacingMode, width: { ideal: 640 }, height: { ideal: 480 } },
+        audio: true
+      });
+      this.localVideo.srcObject = this.localStream;
+
+      const videoTrack = this.localStream.getVideoTracks()[0];
+      if (this.currentCall && this.currentCall.peerConnection) {
+        const sender = this.currentCall.peerConnection.getSenders().find(s => s.track && s.track.kind === 'video');
+        if (sender && videoTrack) sender.replaceTrack(videoTrack);
+      }
+      if (this.peerConnection) {
+        const sender = this.peerConnection.getSenders().find(s => s.track && s.track.kind === 'video');
+        if (sender && videoTrack) sender.replaceTrack(videoTrack);
+      }
+    } catch (e) {
+      console.warn('Flip camera not supported or device has only one camera:', e);
+    }
+  }
+
   // ===================================================================
   // Matchmaking Flow (Real P2P or Simulated Companions)
   // ===================================================================
@@ -799,6 +833,11 @@ class HiGuyApp {
 
     this.chatMessages.appendChild(bubble);
     this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+
+    // Show unread indicator on mobile if not currently on chat view
+    if (senderType === 'stranger' && this.mainGrid && this.mainGrid.getAttribute('data-mobile-view') !== 'chat') {
+      if (this.mobileUnreadDot) this.mobileUnreadDot.style.display = 'inline-block';
+    }
   }
 
   addSystemMessage(text) {
@@ -1089,6 +1128,27 @@ class HiGuyApp {
         this.skipToNextBuddy();
       }
     });
+
+    // Mobile View Navigation Mode
+    document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const view = btn.dataset.view;
+        document.querySelectorAll('.mobile-nav-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (this.mainGrid) {
+          this.mainGrid.setAttribute('data-mobile-view', view);
+        }
+        if (view === 'chat' && this.mobileUnreadDot) {
+          this.mobileUnreadDot.style.display = 'none';
+        }
+        soundEngine.playPop(480);
+      });
+    });
+
+    // Flip Camera Button (Front/Rear)
+    if (this.flipCamBtn) {
+      this.flipCamBtn.addEventListener('click', () => this.flipCamera());
+    }
 
     // Invite Friend Button
     if (this.inviteFriendBtn) {
