@@ -154,41 +154,41 @@
               </svg>
             </button>
           </div>
-        </div>
 
-        <!-- Local Self Video (Picture in Picture / Corner Dock) -->
-        <div class="self-video-dock" id="selfVideoDock">
-          <video id="localVideo" autoplay playsinline muted class="self-stream"></video>
-          <canvas id="selfCanvasFallback" class="self-fallback-canvas"></canvas>
-          <div class="self-badge">You (Live)</div>
+          <!-- Local Self Video (Picture in Picture Dock inside video frame) -->
+          <div class="self-video-dock" id="selfVideoDock">
+            <video id="localVideo" autoplay playsinline muted class="self-stream"></video>
+            <canvas id="selfCanvasFallback" class="self-fallback-canvas"></canvas>
+            <div class="self-badge">You (Live)</div>
 
-          <!-- Self Media Controls -->
-          <div class="self-controls">
-            <button id="toggleMicBtn" class="ctrl-btn" title="Toggle Microphone">
-              <svg id="micIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
-                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                <line x1="12" y1="19" x2="12" y2="23"></line>
-                <line x1="8" y1="23" x2="16" y2="23"></line>
-              </svg>
-            </button>
-            <button id="toggleCamBtn" class="ctrl-btn" title="Toggle Camera">
-              <svg id="camIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="23 7 16 12 23 17 23 7"></polygon>
-                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
-              </svg>
-            </button>
-            <button id="toggleSelfBlurBtn" class="ctrl-btn" title="Toggle Privacy Blur for Yourself">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <circle cx="12" cy="12" r="4"></circle>
-              </svg>
-            </button>
-            <button id="flipCamBtn" class="ctrl-btn" title="Flip Camera (Front/Back)">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 10c0-4.418-3.582-8-8-8s-8 3.582-8 8c0 2.21 0.895 4.21 2.343 5.657L4 18h6v-6l-2.243 2.243C6.671 13.157 6 11.671 6 10c0-3.314 2.686-6 6-6s6 2.686 6 6c0 1.671-0.671 3.157-1.757 4.243L14 12v6h6l-2.343-2.343C19.105 14.21 20 12.21 20 10z"></path>
-              </svg>
-            </button>
+            <!-- Self Media Controls -->
+            <div class="self-controls">
+              <button id="toggleMicBtn" class="ctrl-btn" title="Toggle Microphone">
+                <svg id="micIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                  <line x1="12" y1="19" x2="12" y2="23"></line>
+                  <line x1="8" y1="23" x2="16" y2="23"></line>
+                </svg>
+              </button>
+              <button id="toggleCamBtn" class="ctrl-btn" title="Toggle Camera">
+                <svg id="camIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+              </button>
+              <button id="toggleSelfBlurBtn" class="ctrl-btn" title="Toggle Privacy Blur for Yourself">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="4"></circle>
+                </svg>
+              </button>
+              <button id="flipCamBtn" class="ctrl-btn" title="Flip Camera (Front/Back)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 10c0-4.418-3.582-8-8-8s-8 3.582-8 8c0 2.21 0.895 4.21 2.343 5.657L4 18h6v-6l-2.243 2.243C6.671 13.157 6 11.671 6 10c0-3.314 2.686-6 6-6s6 2.686 6 6c0 1.671-0.671 3.157-1.757 4.243L14 12v6h6l-2.343-2.343C19.105 14.21 20 12.21 20 10z"></path>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
 

@@ -538,13 +538,13 @@ html, body {
   color: #f87171;
 }
 
-/* Picture in Picture Self Video Dock */
+/* Picture in Picture Self Video Dock (Contained safely inside remote-container) */
 .self-video-dock {
   position: absolute;
-  bottom: 96px;
-  right: 20px;
-  width: 170px;
-  height: 120px;
+  bottom: 16px;
+  right: 16px;
+  width: 160px;
+  height: 110px;
   border-radius: var(--radius-md);
   overflow: hidden;
   background: #090e1c;
@@ -1615,8 +1615,8 @@ dialog:not([open]) {
   .self-video-dock {
     width: 120px;
     height: 85px;
-    bottom: 85px;
-    right: 10px;
+    bottom: 12px;
+    right: 12px;
   }
 }
 
@@ -1809,12 +1809,12 @@ dialog:not([open]) {
     display: none;
   }
 
-  /* Mobile PiP Camera */
+  /* Mobile PiP Camera (Cleanly inside video area, never over footer) */
   .self-video-dock {
     width: 105px;
     height: 76px;
-    bottom: 90px;
-    right: 8px;
+    bottom: 10px;
+    right: 10px;
     border-width: 1.5px;
   }
 
